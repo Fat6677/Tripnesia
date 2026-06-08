@@ -22,5 +22,9 @@ export default function About() {
   return (
     <section className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
+
+         <h2 className="text-4xl font-bold text-center">
+          Tentang Pantai
+        </h2>
         
       </div>

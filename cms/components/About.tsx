@@ -12,3 +12,9 @@ export default function About() {
       title: "Nuansa Tropis",
       desc: "Pepohonan hijau yang sejuk."
     },
+    {
+      icon: <Camera />,
+      title: "Spot Foto",
+      desc: "Banyak tempat instagramable."
+    }
+  ];

@@ -16,5 +16,9 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow z-50">
-        <div className="max-w-7xl mx-auto flex justify-between items-center p-4"></div>
+        <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
+         <h1 className="font-bold text-sky-700 text-xl">
+          Pantai Setigi Heni
+         </h1>
+        </div>
     </nav>

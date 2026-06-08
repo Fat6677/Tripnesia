@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "api-gateway",
   "version": "0.0.1",
   "description": "",
@@ -67,5 +68,10 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+=======
+  "dependencies": {
+    "framer-motion": "^12.40.0",
+    "lucide-react": "^1.17.0"
+>>>>>>> a9d59e257d5f5466eccf936aeed8628d65733e23
   }
 }

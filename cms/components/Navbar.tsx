@@ -27,7 +27,9 @@ export default function Navbar() {
               key={menu}
               href="#"
               className="hover:text-sky-600"
-            ></a>
+            >
+                 {menu}
+            </a>
          </div>
         </div>
     </nav>

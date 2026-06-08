@@ -36,6 +36,8 @@ export default function Navbar() {
          <button
           className="md:hidden"
           onClick={() => setOpen(!open)}
-        ></button>
+        >
+            <Menu />
+        </button>
         </div>
     </nav>

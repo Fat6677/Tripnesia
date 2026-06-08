@@ -32,4 +32,25 @@ export default function About() {
           wisata pantai menarik di Lampung Selatan.
         </p>
 
+        <div className="grid md:grid-cols-3 gap-6 mt-10">
+          {items.map((item) => (
+            <div
+              key={item.title}
+              className="bg-white rounded-2xl p-6 shadow"
+            >
+              <div className="text-sky-600">
+                {item.icon}
+              </div>
+
+              <h3 className="font-bold mt-4">
+                {item.title}
+              </h3>
+
+              <p>{item.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
+    </section>
+  );
+}

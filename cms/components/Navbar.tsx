@@ -21,6 +21,8 @@ export default function Navbar() {
           Pantai Setigi Heni
          </h1>
 
-         <div className="hidden md:flex gap-6"></div>
+         <div className="hidden md:flex gap-6">
+            {menus.map((menu) => (
+         </div>
         </div>
     </nav>

@@ -21,4 +21,10 @@ export default function Hero() {
         >
           Pantai Setigi Heni
         </motion.h1>
+
+        <p className="max-w-2xl mt-6 text-lg">
+          Destinasi wisata pantai yang menawarkan
+          panorama laut indah, pasir alami dan
+          suasana tropis yang menenangkan.
+        </p>
     </section>

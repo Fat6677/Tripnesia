@@ -9,3 +9,4 @@ export default function Navbar() {
         "Beranda",
         "Tentang",
         "Galeri",
+        "Fasilitas",

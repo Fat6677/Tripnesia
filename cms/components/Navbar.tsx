@@ -49,7 +49,11 @@ export default function Navbar() {
               href="#"
               className="block py-2"
             >
-                
+                {menu}
             </a>
+            ))}
         </div>
+         )}
     </nav>
+    );
+}

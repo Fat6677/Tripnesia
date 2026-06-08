@@ -8,3 +8,4 @@ export default function Navbar() {
     const menus = [
         "Beranda",
         "Tentang",
+        "Galeri",

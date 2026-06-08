@@ -20,5 +20,7 @@ export default function Navbar() {
          <h1 className="font-bold text-sky-700 text-xl">
           Pantai Setigi Heni
          </h1>
+
+         <div className="hidden md:flex gap-6"></div>
         </div>
     </nav>

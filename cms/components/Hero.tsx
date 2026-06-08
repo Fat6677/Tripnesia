@@ -27,4 +27,11 @@ export default function Hero() {
           panorama laut indah, pasir alami dan
           suasana tropis yang menenangkan.
         </p>
+
+        <div className="mt-8 flex gap-4">
+          <button className="bg-sky-600 px-6 py-3 rounded-xl">
+            Jelajahi Sekarang
+          </button>
+
+          
     </section>

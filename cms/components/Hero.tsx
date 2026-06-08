@@ -33,5 +33,11 @@ export default function Hero() {
             Jelajahi Sekarang
           </button>
 
-          
+          <button className="bg-white text-black px-6 py-3 rounded-xl">
+            Lihat Galeri
+          </button>
+        </div>
+      </div>
     </section>
+  );
+}

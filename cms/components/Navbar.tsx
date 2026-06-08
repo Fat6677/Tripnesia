@@ -11,3 +11,5 @@ export default function Navbar() {
         "Galeri",
         "Fasilitas",
         "Lokasi",
+         "Kontak",
+  ];

@@ -26,5 +26,10 @@ export default function About() {
          <h2 className="text-4xl font-bold text-center">
           Tentang Pantai
         </h2>
-        
+
+        <p className="text-center mt-4">
+          Pantai Setigi Heni merupakan salah satu
+          wisata pantai menarik di Lampung Selatan.
+        </p>
+
       </div>

@@ -40,4 +40,9 @@ export default function Navbar() {
             <Menu />
         </button>
         </div>
+
+         {open && (
+        <div className="md:hidden bg-white p-4">
+            
+        </div>
     </nav>

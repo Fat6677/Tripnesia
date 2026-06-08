@@ -10,3 +10,4 @@ export default function Navbar() {
         "Tentang",
         "Galeri",
         "Fasilitas",
+        "Lokasi",

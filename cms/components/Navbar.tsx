@@ -23,6 +23,11 @@ export default function Navbar() {
 
          <div className="hidden md:flex gap-6">
             {menus.map((menu) => (
+                <a
+              key={menu}
+              href="#"
+              className="hover:text-sky-600"
+            ></a>
          </div>
         </div>
     </nav>

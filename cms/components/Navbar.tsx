@@ -43,6 +43,13 @@ export default function Navbar() {
 
          {open && (
         <div className="md:hidden bg-white p-4">
-            
+            {menus.map((menu) => (
+            <a
+              key={menu}
+              href="#"
+              className="block py-2"
+            >
+                
+            </a>
         </div>
     </nav>

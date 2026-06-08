@@ -30,6 +30,7 @@ export default function Navbar() {
             >
                  {menu}
             </a>
+              ))}
          </div>
         </div>
     </nav>

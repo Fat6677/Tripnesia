@@ -36,11 +36,6 @@ export default function HomeScreen() {
         <Text style={styles.cardTitle}>Pantai Setigi Heni</Text>
         <Text>Kalianda, Lampung Selatan</Text>
       </View>
-
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>Pantai Embe</Text>
-        <Text>Lampung Selatan</Text>
-      </View>
     </ScrollView>
   );
 }

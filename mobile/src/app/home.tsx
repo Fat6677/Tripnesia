@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TextInput,
+} from 'react-native';
 
 export default function HomeScreen() {
   return (

@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { TestService } from './test.service';
 
 @Controller('test')
-export class TestController {}
+export class TestController {
+  constructor(private readonly testService: TestService) {}
+
+  @Get('db')
+  async testDb() {
+    return this.testService.testDatabase();
+  }
+}

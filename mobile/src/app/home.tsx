@@ -10,6 +10,10 @@ export default function HomeScreen() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Tripnesia</Text>
+      <TextInput
+        style={styles.search}
+        placeholder="Cari destinasi wisata..."
+      />
       <Text style={styles.welcome}>
         Halo, Traveler 👋
       </Text>
@@ -64,5 +68,11 @@ const styles = StyleSheet.create({
   fontSize: 16,
   color: '#64748b',
   marginTop: 20,
+},
+search: {
+  backgroundColor: '#f1f5f9',
+  padding: 12,
+  borderRadius: 10,
+  marginBottom: 20,
 },
 });

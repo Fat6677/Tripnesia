@@ -19,7 +19,7 @@ export default function HomeScreen() {
       </Text>
 
       <Text style={styles.subtitle}>
-        Destinasi Wisata Populer
+        Selamat Datang di Pantai Setigi Heni
       </Text>
 
       <Text style={styles.sectionTitle}>

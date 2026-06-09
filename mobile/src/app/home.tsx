@@ -22,6 +22,10 @@ export default function HomeScreen() {
         Destinasi Wisata Populer
       </Text>
 
+      <Text style={styles.sectionTitle}>
+        Kategori Wisata
+      </Text>
+
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Pantai Setigi Heni</Text>
         <Text>Kalianda, Lampung Selatan</Text>
@@ -74,5 +78,10 @@ search: {
   padding: 12,
   borderRadius: 10,
   marginBottom: 20,
+},
+sectionTitle: {
+  fontSize: 20,
+  fontWeight: 'bold',
+  marginBottom: 10,
 },
 });

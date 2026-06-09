@@ -35,3 +35,7 @@ model TourismPlace {
   updatedAt DateTime @updatedAt
 }
 
+enum Role {
+  USER
+  ADMIN
+}

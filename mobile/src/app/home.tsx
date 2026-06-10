@@ -40,6 +40,10 @@ export default function HomeScreen() {
       <Text style={styles.info}>
   📍    Desa Canggung, Kalianda, Lampung Selatan
       </Text>
+
+      <Text style={styles.info}>
+  💰    Tiket Masuk: Rp10.000
+      </Text>
     </ScrollView>
   );
 }

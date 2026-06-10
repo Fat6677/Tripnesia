@@ -35,6 +35,10 @@ export default function HomeScreen() {
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Pantai Setigi Heni</Text>
         <Text>Kalianda, Lampung Selatan</Text>
+
+        <Text style={styles.detailButton}>
+          Lihat Detail →
+        </Text>
       </View>
 
       <Text style={styles.sectionTitle}>
@@ -112,5 +116,10 @@ description: {
 info: {
   marginTop: 8,
   color: '#64748b',
+},
+detailButton: {
+  marginTop: 10,
+  color: '#2563eb',
+  fontWeight: 'bold',
 },
 });

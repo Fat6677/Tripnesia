@@ -36,6 +36,10 @@ export default function HomeScreen() {
         <Text style={styles.cardTitle}>Pantai Setigi Heni</Text>
         <Text>Kalianda, Lampung Selatan</Text>
       </View>
+
+      <Text style={styles.info}>
+  📍    Desa Canggung, Kalianda, Lampung Selatan
+      </Text>
     </ScrollView>
   );
 }
@@ -85,5 +89,9 @@ description: {
   color: '#64748b',
   marginBottom: 20,
   lineHeight: 22,
+},
+info: {
+  marginTop: 8,
+  color: '#64748b',
 },
 });

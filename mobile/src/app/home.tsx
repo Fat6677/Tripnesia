@@ -37,8 +37,27 @@ export default function HomeScreen() {
         <Text>Kalianda, Lampung Selatan</Text>
       </View>
 
+      <Text style={styles.sectionTitle}>
+         Fasilitas
+      </Text>
+
+      <View style={styles.card}>
+        <Text>🚗 Area Parkir</Text>
+        <Text>🕌 Mushola</Text>
+        <Text>🚻 Toilet</Text>
+        <Text>📸 Spot Foto</Text>
+      </View>
+
       <Text style={styles.info}>
   📍    Desa Canggung, Kalianda, Lampung Selatan
+      </Text>
+
+      <Text style={styles.info}>
+  💰    Tiket Masuk: Rp10.000
+      </Text>
+
+      <Text style={styles.info}>
+  🕒    Jam Operasional: 08.00 - 18.00 WIB
       </Text>
     </ScrollView>
   );

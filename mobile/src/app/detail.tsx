@@ -22,6 +22,9 @@ export default function DetailScreen() {
         menawarkan pemandangan alam yang indah dan suasana yang
         nyaman untuk berlibur bersama keluarga.
       </Text>
+      <Text style={styles.sectionTitle}>
+        Galeri Wisata
+      </Text>
     </View>
   );
 }
@@ -50,5 +53,10 @@ const styles = StyleSheet.create({
   marginTop: 20,
   fontSize: 15,
   lineHeight: 24,
+  },
+  sectionTitle: {
+  fontSize: 20,
+  fontWeight: 'bold',
+  marginTop: 25,
   },
 });

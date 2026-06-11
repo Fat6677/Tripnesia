@@ -30,7 +30,10 @@ export default function DetailScreen() {
       <View style={styles.photoPlaceholder}>
         <Text>Foto Pantai Setigi Heni</Text>
       </View>
-
+    
+      <Text style={styles.sectionTitle}>
+        Informasi Pengunjung
+      </Text>
     </View>
   );
 }

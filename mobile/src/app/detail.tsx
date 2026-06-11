@@ -34,6 +34,10 @@ export default function DetailScreen() {
       <Text style={styles.sectionTitle}>
         Informasi Pengunjung
       </Text>
+
+      <Text style={styles.info}>
+        📞 Hubungi pengelola untuk informasi lebih lanjut.
+      </Text>
     </View>
   );
 }

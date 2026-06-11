@@ -6,6 +6,10 @@ export default function DetailScreen() {
       <Text style={styles.title}>
         Pantai Setigi Heni
       </Text>
+
+      <Text style={styles.info}>
+        📍 Desa Canggung, Kalianda, Lampung Selatan
+      </Text>
     </View>
   );
 }
@@ -19,5 +23,10 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     marginTop: 20,
+  },
+  info: {
+    fontSize: 16,
+    marginTop: 10,
+    color: '#64748b',
   },
 });

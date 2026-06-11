@@ -15,6 +15,13 @@ export default function DetailScreen() {
       <Text style={styles.info}>
         📍 Desa Canggung, Kalianda, Lampung Selatan
       </Text>
+
+      <Text style={styles.description}>
+        Pantai Setigi Heni merupakan salah satu destinasi wisata
+        yang berada di Kalianda, Lampung Selatan. Pantai ini
+        menawarkan pemandangan alam yang indah dan suasana yang
+        nyaman untuk berlibur bersama keluarga.
+      </Text>
     </View>
   );
 }
@@ -38,5 +45,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 10,
     color: '#64748b',
+  },
+  description: {
+  marginTop: 20,
+  fontSize: 15,
+  lineHeight: 24,
   },
 });

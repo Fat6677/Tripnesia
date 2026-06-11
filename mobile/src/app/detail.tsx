@@ -22,9 +22,15 @@ export default function DetailScreen() {
         menawarkan pemandangan alam yang indah dan suasana yang
         nyaman untuk berlibur bersama keluarga.
       </Text>
+
       <Text style={styles.sectionTitle}>
         Galeri Wisata
       </Text>
+
+      <View style={styles.photoPlaceholder}>
+        <Text>Foto Pantai Setigi Heni</Text>
+      </View>
+
     </View>
   );
 }
@@ -58,5 +64,13 @@ const styles = StyleSheet.create({
   fontSize: 20,
   fontWeight: 'bold',
   marginTop: 25,
+  },
+  photoPlaceholder: {
+  height: 180,
+  backgroundColor: '#e2e8f0',
+  borderRadius: 12,
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: 10,
   },
 });

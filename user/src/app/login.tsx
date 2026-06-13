@@ -22,8 +22,12 @@ export default function LoginScreen() {
         style={styles.input}
       />
 
+      <Text style={styles.forgotPassword}>
+        Lupa Password?
+      </Text>
+
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Masuk</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
     </View>
   );
@@ -56,6 +60,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#0ea5e9',
     padding: 14,
     borderRadius: 10,
+  },
+  forgotPassword: {
+  textAlign: 'right',
+  color: '#0ea5e9',
+  marginBottom: 20,
   },
   buttonText: {
     color: '#fff',

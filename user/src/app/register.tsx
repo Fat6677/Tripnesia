@@ -88,4 +88,9 @@ const styles = StyleSheet.create({
   marginTop: 20,
   color: '#64748b',
   },
+  footer: {
+  textAlign: 'center',
+  marginTop: 40,
+  color: '#94a3b8',
+},
 });

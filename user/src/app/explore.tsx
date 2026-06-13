@@ -29,6 +29,10 @@ export default function ExploreScreen() {
         <Text style={styles.info}>
           ⭐ Rating: 4.8/5
         </Text>
+
+        <Text style={styles.info}>
+          👥 Pengunjung: 1.200+
+        </Text>
       </View>
 
       <View style={styles.card}>

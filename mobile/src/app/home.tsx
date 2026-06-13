@@ -6,6 +6,8 @@ import {
   TextInput,
 } from 'react-native';
 
+import { Link } from 'expo-router';
+
 export default function HomeScreen() {
   return (
     <ScrollView style={styles.container}>
@@ -36,9 +38,11 @@ export default function HomeScreen() {
         <Text style={styles.cardTitle}>Pantai Setigi Heni</Text>
         <Text>Kalianda, Lampung Selatan</Text>
 
+      <Link href="/detail" asChild>
         <Text style={styles.detailButton}>
           Lihat Detail →
         </Text>
+      </Link>
       </View>
 
       <Text style={styles.sectionTitle}>

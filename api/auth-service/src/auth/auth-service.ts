@@ -132,3 +132,88 @@ export class AuthService {
         expiresIn: '7d', // Refresh token berlaku 7 hari
       }),
     ]);
+
+    return {
+      access_token: accessToken,
+      refresh_token: refreshToken,
+      user: {
+        id: user.id,
+        name: user.name,
+        role: user.role,
+      },
+    };
+  }
+
+  async forgotPassword(data: ForgotPassword) {
+    const { email } = data;
+    const user = await this.prisma.user.findUnique({ where: { email } });
+
+    // Keamanan: Jangan beritahu apakah email terdaftar atau tidak (mencegah enumerasi email)
+    if (!user) {
+      return { message: 'Jika email terdaftar, kode OTP akan dikirimkan ke email tersebut.' };
+    }
+
+    const otp = this.generateOtp();
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
+
+    await this.prisma.user.update({
+      where: { email },
+      data: { otpCode: otp, otpExpiresAt: expiresAt },
+    });
+
+    this.notificationClient.emit('send_reset_password_email', {
+      email: user.email,
+      otp: otp,
+      name: user.name,
+    });
+
+    return { message: 'Jika email terdaftar, kode OTP akan dikirimkan ke email tersebut.' };
+  }
+
+  async verifyResetOtp(data: VerifyResetOtpDto) {
+    const { email, otpCode } = data;
+    const user = await this.prisma.user.findUnique({ where: { email } });
+
+    if (!user || user.otpCode !== otpCode) throw new BadRequestException('Kode OTP tidak valid');
+    if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
+      throw new BadRequestException('Kode OTP sudah kedaluwarsa');
+    }
+
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const newExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
+
+    await this.prisma.user.update({
+      where: { email },
+      data: { otpCode: resetToken, otpExpiresAt: newExpiresAt },
+    });
+
+    return {
+      message: 'OTP valid. Silakan lanjutkan untuk membuat password baru.',
+      resetToken: resetToken,
+    };
+  }
+
+  async resetPassword(data: ResetPasswordDto) {
+    const { email, resetToken, newPassword } = data;
+    const user = await this.prisma.user.findUnique({ where: { email } });
+
+    if (!user || user.otpCode !== resetToken) {
+      throw new BadRequestException('Sesi reset password tidak valid atau sudah kedaluwarsa');
+    }
+    if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
+      throw new BadRequestException('Sesi reset password sudah kedaluwarsa');
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    await this.prisma.user.update({
+      where: { email },
+      data: {
+        password: hashedNewPassword,
+        otpCode: null,
+        otpExpiresAt: null,
+      },
+    });
+
+    return { message: 'Password berhasil diubah. Silakan login dengan password baru Anda.' };
+  }

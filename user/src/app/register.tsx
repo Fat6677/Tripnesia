@@ -31,6 +31,12 @@ export default function RegisterScreen() {
         style={styles.input}
       />
 
+      <TextInput
+        placeholder="Konfirmasi Password"
+        secureTextEntry
+        style={styles.input}
+      />
+
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Daftar</Text>
       </TouchableOpacity>

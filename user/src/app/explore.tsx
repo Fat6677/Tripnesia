@@ -6,6 +6,8 @@ import {
   View,
 } from 'react-native';
 
+import { Link } from 'expo-router';
+
 export default function ExploreScreen() {
   return (
     <ScrollView style={styles.container}>
@@ -37,6 +39,12 @@ export default function ExploreScreen() {
         <Text style={styles.info}>
           🟢 Buka Hari Ini
         </Text>
+
+        <Link href="/detail" asChild>
+          <Text style={styles.detailButton}>
+            Lihat Detail →
+          </Text>
+        </Link>
       </View>
 
       <View style={styles.card}>
@@ -108,5 +116,11 @@ const styles = StyleSheet.create({
   info: {
   color: '#64748b',
   marginTop: 8,
+  },
+
+  detailButton: {
+  color: '#2563eb',
+  fontWeight: 'bold',
+  marginTop: 10,
   },
 });

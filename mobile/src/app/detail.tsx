@@ -38,6 +38,10 @@ export default function DetailScreen() {
       <Text style={styles.info}>
         📞 Hubungi pengelola untuk informasi lebih lanjut.
       </Text>
+
+      <Text style={styles.sectionTitle}>
+        Fasilitas Wisata
+      </Text>
     </View>
   );
 }

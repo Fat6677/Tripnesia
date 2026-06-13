@@ -3,7 +3,9 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 export default function LoginScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Masuk</Text>
+      <Text style={styles.title}>
+        👋 Masuk
+      </Text>
 
       <Text style={styles.subtitle}>
         Selamat datang kembali di Tripnesia

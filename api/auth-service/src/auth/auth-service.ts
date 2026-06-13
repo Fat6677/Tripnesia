@@ -37,3 +37,26 @@ export class AuthService {
   private generateOtp(): string {
     return Math.floor(100000 + Math.random() * 900000).toString();
   }
+
+  async register(data: RegisterDto) {
+    const { email, password, name } = data;
+
+    const existingUser = await this.prisma.user.findUnique({ where: { email } });
+    if (existingUser) {
+      throw new BadRequestException('Email sudah terdaftar di Tripnesia');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const otp = this.generateOtp();
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // OTP berlaku 15 Menit
+
+    const user = await this.prisma.user.create({
+      data: {
+        email,
+        name,
+        password: hashedPassword,
+        otpCode: otp,
+        otpExpiresAt: expiresAt,
+        isVerified: false,
+      },
+    });

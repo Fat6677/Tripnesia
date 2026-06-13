@@ -7,7 +7,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service'; // Sesuaikan path
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import * as crypto from 'crypto';
 import { ClientProxy } from '@nestjs/microservices';
 import { Role } from '@prisma/client';
@@ -19,7 +19,7 @@ import {
   VerifyDto,
   VerifyResetOtpDto,
 } from './dto/auth.dto';
-import { JwtPayload } from './types/auth-payload.type';
+import { JwtPayload } from './types/auth-payload';
 
 @Injectable()
 export class AuthService {

@@ -11,6 +11,10 @@ export default function RegisterScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Daftar Akun</Text>
 
+      <Text style={styles.subtitle}>
+        Buat akun Tripnesia untuk mulai menjelajahi wisata
+      </Text>
+
       <TextInput
         placeholder="Nama Lengkap"
         style={styles.input}
@@ -45,6 +49,11 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 24,
+  },
+  subtitle: {
+  fontSize: 14,
+  color: '#64748b',
+  marginBottom: 20,
   },
   input: {
     borderWidth: 1,

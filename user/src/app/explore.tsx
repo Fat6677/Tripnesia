@@ -87,6 +87,16 @@ export default function ExploreScreen() {
         </Text>
       </View>
 
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>
+          🌅 Titik Sunset Terbaik
+        </Text>
+
+        <Text style={styles.cardText}>
+          Area terbaik untuk menikmati pemandangan matahari terbenam.
+        </Text>
+      </View>
+
     </ScrollView>
   );
 }

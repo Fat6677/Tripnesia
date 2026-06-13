@@ -25,6 +25,10 @@ export default function ExploreScreen() {
         <Text style={styles.cardText}>
           Area favorit pengunjung untuk berfoto.
         </Text>
+
+        <Text style={styles.info}>
+          ⭐ Rating: 4.8/5
+        </Text>
       </View>
 
       <View style={styles.card}>
@@ -91,5 +95,10 @@ const styles = StyleSheet.create({
 
   cardText: {
     color: '#64748b',
+  },
+
+  info: {
+  color: '#64748b',
+  marginTop: 8,
   },
 });

@@ -35,3 +35,14 @@ export class RegisterDto {
   @IsOptional()
   phone?: string;
 }
+
+export class VerifyDto {
+  @IsEmail({}, { message: 'Invalid email format' })
+  @IsNotEmpty({ message: 'Email is required' })
+  email!: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'OTP code is required' })
+  @Length(6, 6, { message: 'OTP code must be exactly 6 characters' }) // Typo '4 digit' diperbaiki
+  otpCode!: string; // Ditambahkan '!' agar seragam dengan DTO lainnya
+}

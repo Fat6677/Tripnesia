@@ -233,3 +233,15 @@ export class AuthService {
       return null;
     }
   }
+
+  async syncRoleUpdate(accountId: string, newRole: Role, region?: string) {
+    await this.prisma.user.update({
+      where: { id: accountId },
+      data: { role: newRole, regionId: region },
+    });
+  }
+
+  async deletedUser(accountId: string) {
+    await this.prisma.user.delete({ where: { id: accountId } });
+  }
+}

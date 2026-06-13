@@ -4,6 +4,8 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
+  Image,
+  TouchableOpacity,
 } from 'react-native';
 
 import { Link } from 'expo-router';
@@ -24,6 +26,19 @@ export default function HomeScreen() {
         Selamat Datang di Pantai Setigi Heni
       </Text>
 
+      <Image
+        source={{
+         uri: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e'
+        }}
+        style={styles.image}
+      />
+
+      <View style={styles.card}>
+        <Text>🏖️ Wisata Pantai</Text>
+        <Text>📍 Lampung Selatan</Text>
+        <Text>⭐ Destinasi Favorit</Text>
+      </View>
+
       <Text style={styles.description}>
         Nikmati keindahan Pantai Setigi Heni yang terletak di
         Kalianda, Lampung Selatan. Temukan berbagai spot foto
@@ -37,6 +52,11 @@ export default function HomeScreen() {
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Pantai Setigi Heni</Text>
         <Text>Kalianda, Lampung Selatan</Text>
+
+        <Text>⭐ Rating: 4.8/5</Text>
+        <Text>📝 325 Ulasan</Text>
+        <Text>👥 Pengunjung: 1.200+</Text>
+        <Text>🟢 Buka Hari Ini</Text>
 
       <Link href="/detail" asChild>
         <Text style={styles.detailButton}>
@@ -67,6 +87,12 @@ export default function HomeScreen() {
       <Text style={styles.info}>
   🕒    Jam Operasional: 08.00 - 18.00 WIB
       </Text>
+
+      <TouchableOpacity style={styles.bookButton}>
+        <Text style={styles.bookButtonText}>
+           Pesan Tiket
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -80,10 +106,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginTop: 20,
+    color: '#0f172a',
   },
   subtitle: {
     fontSize: 18,
     marginBottom: 20,
+    color: '#334155',
   },
   card: {
     backgroundColor: '#f1f5f9',
@@ -125,5 +153,24 @@ detailButton: {
   marginTop: 10,
   color: '#2563eb',
   fontWeight: 'bold',
+},
+bookButton: {
+  backgroundColor: '#2563eb',
+  padding: 14,
+  borderRadius: 10,
+  marginTop: 20,
+  marginBottom: 20,
+},
+
+bookButtonText: {
+  color: '#ffffff',
+  textAlign: 'center',
+  fontWeight: 'bold',
+},
+image: {
+  width: '100%',
+  height: 200,
+  borderRadius: 12,
+  marginBottom: 15,
 },
 });

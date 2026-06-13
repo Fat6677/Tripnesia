@@ -48,6 +48,7 @@ export default function HomeScreen() {
         <Text>Kalianda, Lampung Selatan</Text>
 
         <Text>⭐ Rating: 4.8/5</Text>
+        <Text>📝 325 Ulasan</Text>
         <Text>👥 Pengunjung: 1.200+</Text>
         <Text>🟢 Buka Hari Ini</Text>
 

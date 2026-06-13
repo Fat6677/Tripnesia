@@ -49,6 +49,22 @@ export default function DetailScreen() {
       <Text>🚻 Toilet</Text>
       <Text>📸 Spot Foto</Text>
       </View>
+
+      <Text style={styles.sectionTitle}>
+        Aktivitas Wisata
+      </Text>
+
+      <Text style={styles.info}>
+        📸 Berfoto
+      </Text>
+
+      <Text style={styles.info}>
+        🌊 Menikmati Pantai
+      </Text>
+
+      <Text style={styles.info}>
+        👨‍👩‍👧‍👦 Rekreasi Keluarga
+      </Text>
     </View>
   );
 }

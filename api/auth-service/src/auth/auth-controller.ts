@@ -10,4 +10,43 @@ import {
   VerifyDto,
   VerifyResetOtpDto,
 } from './dto/auth.dto';
-import { JwtPayload } from './types/auth-payload.type'; // Sesuaikan path
+import { JwtPayload } from './types/auth-payload.type'; 
+
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  @Post('register')
+  async register(@Body() data: RegisterDto) {
+    return this.authService.register(data);
+  }
+
+  @Post('verify')
+  @HttpCode(HttpStatus.OK)
+  async verifyOtp(@Body() data: VerifyDto) {
+    return this.authService.verifyOtp(data);
+  }
+
+  @Post('login')
+  @HttpCode(HttpStatus.OK)
+  async login(@Body() data: LoginDto) {
+    return this.authService.login(data);
+  }
+
+  @Post('forgot-password')
+  @HttpCode(HttpStatus.OK)
+  async forgotPassword(@Body() data: ForgotPassword) {
+    return this.authService.forgotPassword(data);
+  }
+
+  @Post('verify-reset-otp')
+  @HttpCode(HttpStatus.OK)
+  async verifyResetOtp(@Body() data: VerifyResetOtpDto) {
+    return this.authService.verifyResetOtp(data);
+  }
+
+  @Post('reset-password')
+  @HttpCode(HttpStatus.OK)
+  async resetPassword(@Body() data: ResetPasswordDto) {
+    return this.authService.resetPassword(data);
+  }

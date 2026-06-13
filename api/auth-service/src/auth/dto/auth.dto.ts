@@ -46,3 +46,9 @@ export class VerifyDto {
   @Length(6, 6, { message: 'OTP code must be exactly 6 characters' }) // Typo '4 digit' diperbaiki
   otpCode!: string; // Ditambahkan '!' agar seragam dengan DTO lainnya
 }
+
+export class ForgotPassword {
+  @IsEmail({}, { message: 'Invalid email format' })
+  @IsNotEmpty({ message: 'Email is required' })
+  email!: string;
+}

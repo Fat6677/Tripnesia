@@ -100,10 +100,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginTop: 20,
+    color: '#0f172a',
   },
   subtitle: {
     fontSize: 18,
     marginBottom: 20,
+    color: '#334155',
   },
   card: {
     backgroundColor: '#f1f5f9',

@@ -8,4 +8,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   const logger = new Logger('Bootstrap-TripnesiaAuth'); // Logger spesifik Tripnesia
-bootstrap();
+
+  app.setGlobalPrefix('api');
+
+  // Ambil konfigurasi port & host dari Environment Variable
+  const httpPort = configService.get<number>('PORT') || 8001;
+  const tcpPort = configService.get<number>('TCP_PORT') || 9001;
+  const tcpHost = configService.get<string>('TCP_HOST') || '0.0.0.0';

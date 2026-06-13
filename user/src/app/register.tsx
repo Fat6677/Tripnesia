@@ -26,7 +26,7 @@ export default function RegisterScreen() {
       />
 
       <TextInput
-        placeholder="Password"
+        placeholder="Masukkan Password"
         secureTextEntry
         style={styles.input}
       />

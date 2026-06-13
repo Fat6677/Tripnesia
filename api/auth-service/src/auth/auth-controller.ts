@@ -1,5 +1,5 @@
 import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth-service';
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 import { Role } from '@prisma/client';
 import {
@@ -10,7 +10,7 @@ import {
   VerifyDto,
   VerifyResetOtpDto,
 } from './dto/auth.dto';
-import { JwtPayload } from './types/auth-payload.type'; 
+import { JwtPayload } from './types/auth-payload'; 
 
 @Controller('auth')
 export class AuthController {

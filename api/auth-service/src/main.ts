@@ -15,3 +15,12 @@ async function bootstrap() {
   const httpPort = configService.get<number>('PORT') || 8001;
   const tcpPort = configService.get<number>('TCP_PORT') || 9001;
   const tcpHost = configService.get<string>('TCP_HOST') || '0.0.0.0';
+
+  // Setup Microservice TCP
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.TCP,
+    options: {
+      host: tcpHost,
+      port: tcpPort,
+    },
+  });

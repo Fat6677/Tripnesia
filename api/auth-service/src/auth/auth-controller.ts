@@ -50,3 +50,29 @@ export class AuthController {
   async resetPassword(@Body() data: ResetPasswordDto) {
     return this.authService.resetPassword(data);
   }
+
+  // ==========================================================
+  // MICROSERVICES EVENT LISTENERS (TCP / Message Broker)
+  // ==========================================================
+
+  @MessagePattern({ cmd: 'get_user_by_id' })
+  async getUserById(@Payload() id: string) {
+    return this.authService.findById(id);
+  }
+
+  @MessagePattern({ cmd: 'validate_token' })
+  async validateToken(@Payload() token: string): Promise<JwtPayload | null> {
+    return this.authService.validateToken(token);
+  }
+
+  @MessagePattern({ cmd: 'role_updated' })
+  async handleRoleUpdated(
+    @Payload() data: { accountId: string; role: Role; regionId: string },
+  ) {
+    await this.authService.syncRoleUpdate(data.accountId, data.role, data.regionId);
+  }
+
+  @EventPattern('account_deleted')
+  async handleAccountDeleted(@Payload() data: { accountId: string }) {
+    await this.authService.deletedUser(data.accountId);
+  }

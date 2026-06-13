@@ -30,3 +30,10 @@ export class AuthService {
     @Inject('NOTIFICATION_SERVICE') private notificationClient: ClientProxy,
     @Inject('USER_SERVICE') private userServiceClient: ClientProxy,
   ) {}
+
+  /**
+   * Helper: Generate 6-digit OTP
+   */
+  private generateOtp(): string {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+  }

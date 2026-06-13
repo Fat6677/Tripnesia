@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth-service';
 import { AuthController } from './auth-controller';
-import { PrismaModule } from '../prisma/prisma.module'; // Sesuaikan path jika perlu
+import { PrismaModule } from '../prisma/prisma.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
@@ -35,15 +35,13 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         }),
       },
     ]),
-    // JWT Module sudah benar menggunakan Async, kita tinggal sesuaikan expiresIn
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
         signOptions: {
-          // Gunakan env variable, jika tidak ada fallback ke 15 menit
-          expiresIn: configService.get<string>('JWT_EXPIRES_IN') || '15m', 
+          expiresIn: (configService.get<string>('JWT_EXPIRES_IN') || '15m') as any, 
         },
       }),
     }),

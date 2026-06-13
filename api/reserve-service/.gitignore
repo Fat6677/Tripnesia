@@ -55,11 +55,4 @@ pids
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# Environments
-.env
-.env.production
-.env.development
-.env.test
-/generated/prisma
-
 /generated/prisma

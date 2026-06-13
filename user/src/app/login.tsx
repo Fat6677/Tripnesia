@@ -12,12 +12,12 @@ export default function LoginScreen() {
       </Text>
 
       <TextInput
-        placeholder="Email"
+        placeholder="Masukkan Email"
         style={styles.input}
       />
 
       <TextInput
-        placeholder="Password"
+        placeholder="Masukkan Password"
         secureTextEntry
         style={styles.input}
       />

@@ -20,3 +20,13 @@ import {
   VerifyResetOtpDto,
 } from './dto/auth.dto';
 import { JwtPayload } from './types/auth-payload.type';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+    private readonly configService: ConfigService,
+    @Inject('NOTIFICATION_SERVICE') private notificationClient: ClientProxy,
+    @Inject('USER_SERVICE') private userServiceClient: ClientProxy,
+  ) {}

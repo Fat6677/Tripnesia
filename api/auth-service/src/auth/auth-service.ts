@@ -94,3 +94,14 @@ export class AuthService {
         otpExpiresAt: null,
       },
     });
+
+    // Sinkronisasi data user ke microservice lain jika diperlukan
+    this.userServiceClient.emit('account_created', {
+      accountId: verifiedUser.id,
+      email: verifiedUser.email,
+      name: verifiedUser.name,
+      role: verifiedUser.role,
+    });
+
+    return { message: 'Verifikasi OTP berhasil, silakan login.' };
+  }

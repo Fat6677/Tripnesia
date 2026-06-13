@@ -33,6 +33,10 @@ export default function ExploreScreen() {
         <Text style={styles.info}>
           👥 Pengunjung: 1.200+
         </Text>
+
+        <Text style={styles.info}>
+          🟢 Buka Hari Ini
+        </Text>
       </View>
 
       <View style={styles.card}>

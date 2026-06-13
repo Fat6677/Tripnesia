@@ -123,3 +123,12 @@ export class AuthService {
       role: user.role,
       regionId: user.regionId,
     };
+
+    // Generate Access & Refresh Token untuk Tripnesia
+    const [accessToken, refreshToken] = await Promise.all([
+      this.jwtService.signAsync(payload), // Menggunakan secret dari module auth
+      this.jwtService.signAsync(payload, {
+        secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+        expiresIn: '7d', // Refresh token berlaku 7 hari
+      }),
+    ]);

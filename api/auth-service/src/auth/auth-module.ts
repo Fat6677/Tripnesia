@@ -5,3 +5,34 @@ import { PrismaModule } from '../prisma/prisma.module'; // Sesuaikan path jika p
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+
+@Module({
+  imports: [
+    PrismaModule,
+    // Mengubah registrasi Microservice menjadi dinamis (Async)
+    ClientsModule.registerAsync([
+      {
+        name: 'NOTIFICATION_SERVICE',
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.TCP,
+          options: {
+            host: configService.get<string>('NOTIFICATION_SERVICE_HOST') || '127.0.0.1',
+            port: configService.get<number>('NOTIFICATION_SERVICE_PORT') || 9002,
+          },
+        }),
+      },
+      {
+        name: 'USER_SERVICE',
+        imports: [ConfigModule],
+        inject: [ConfigService],
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.TCP,
+          options: {
+            host: configService.get<string>('USER_SERVICE_HOST') || '127.0.0.1',
+            port: configService.get<number>('USER_SERVICE_PORT') || 9003,
+          },
+        }),
+      },
+    ]),

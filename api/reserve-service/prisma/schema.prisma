@@ -26,3 +26,5 @@ model Reservation {
 
   @@map("reservations")
 }
+
+//

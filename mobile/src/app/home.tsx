@@ -67,10 +67,6 @@ export default function HomeScreen() {
       <Text style={styles.info}>
   🕒    Jam Operasional: 08.00 - 18.00 WIB
       </Text>
-
-      <Text style={styles.detailButton}>
-        Lihat Detail →
-      </Text>
     </ScrollView>
   );
 }

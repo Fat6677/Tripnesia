@@ -217,3 +217,19 @@ export class AuthService {
 
     return { message: 'Password berhasil diubah. Silakan login dengan password baru Anda.' };
   }
+
+  // ---- Microservices Methods ----
+  async findById(id: string) {
+    return this.prisma.user.findUnique({
+      where: { id },
+      select: { id: true, name: true, role: true },
+    });
+  }
+
+  async validateToken(token: string): Promise<JwtPayload | null> {
+    try {
+      return await this.jwtService.verifyAsync<JwtPayload>(token);
+    } catch {
+      return null;
+    }
+  }

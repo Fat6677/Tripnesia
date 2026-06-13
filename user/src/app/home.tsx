@@ -33,6 +33,12 @@ export default function HomeScreen() {
         style={styles.image}
       />
 
+      <View style={styles.card}>
+        <Text>🏖️ Wisata Pantai</Text>
+        <Text>📍 Lampung Selatan</Text>
+        <Text>⭐ Destinasi Favorit</Text>
+      </View>
+
       <Text style={styles.description}>
         Nikmati keindahan Pantai Setigi Heni yang terletak di
         Kalianda, Lampung Selatan. Temukan berbagai spot foto

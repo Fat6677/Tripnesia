@@ -46,6 +46,9 @@ export default function HomeScreen() {
         <Text style={styles.cardTitle}>Pantai Setigi Heni</Text>
         <Text>Kalianda, Lampung Selatan</Text>
 
+        <Text>⭐ Rating: 4.8/5</Text>
+        <Text>👥 Pengunjung: 1.200+</Text>
+
       <Link href="/detail" asChild>
         <Text style={styles.detailButton}>
           Lihat Detail →

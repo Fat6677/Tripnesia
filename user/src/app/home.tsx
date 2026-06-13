@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
+  Image,
 } from 'react-native';
 
 import { Link } from 'expo-router';
@@ -23,6 +24,13 @@ export default function HomeScreen() {
       <Text style={styles.subtitle}>
         Selamat Datang di Pantai Setigi Heni
       </Text>
+
+      <Image
+        source={{
+         uri: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e'
+        }}
+        style={styles.image}
+      />
 
       <Text style={styles.description}>
         Nikmati keindahan Pantai Setigi Heni yang terletak di
@@ -125,5 +133,11 @@ detailButton: {
   marginTop: 10,
   color: '#2563eb',
   fontWeight: 'bold',
+},
+image: {
+  width: '100%',
+  height: 200,
+  borderRadius: 12,
+  marginBottom: 15,
 },
 });

@@ -9,7 +9,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 @Module({
   imports: [
     PrismaModule,
-    // Mengubah registrasi Microservice menjadi dinamis (Async)
     ClientsModule.registerAsync([
       {
         name: 'NOTIFICATION_SERVICE',
@@ -36,3 +35,20 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         }),
       },
     ]),
+    // JWT Module sudah benar menggunakan Async, kita tinggal sesuaikan expiresIn
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: {
+          // Gunakan env variable, jika tidak ada fallback ke 15 menit
+          expiresIn: configService.get<string>('JWT_EXPIRES_IN') || '15m', 
+        },
+      }),
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService],
+})
+export class AuthModule {}

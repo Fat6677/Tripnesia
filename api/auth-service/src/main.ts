@@ -44,7 +44,7 @@ async function bootstrap() {
 
   await app.startAllMicroservices();
   await app.listen(httpPort);
-  
+
   // Log yang dinamis dan ber-branding Tripnesia
   logger.log(`🚀 Tripnesia Auth Service is running!`);
   logger.log(`👉 HTTP Server : http://localhost:${httpPort}/api`);

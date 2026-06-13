@@ -52,3 +52,14 @@ export class ForgotPassword {
   @IsNotEmpty({ message: 'Email is required' })
   email!: string;
 }
+
+export class VerifyResetOtpDto {
+  @IsEmail({}, { message: 'Invalid email format' })
+  @IsNotEmpty({ message: 'Email is required' })
+  email!: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'OTP code is required' })
+  @Length(6, 6, { message: 'OTP code must be exactly 6 characters' })
+  otpCode!: string;
+}

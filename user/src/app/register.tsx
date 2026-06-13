@@ -21,7 +21,7 @@ export default function RegisterScreen() {
       />
 
       <TextInput
-        placeholder="Email"
+        placeholder="Masukkan Email"
         style={styles.input}
       />
 

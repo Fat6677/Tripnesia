@@ -5,6 +5,7 @@ import {
   ScrollView,
   TextInput,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 import { Link } from 'expo-router';
@@ -79,6 +80,12 @@ export default function HomeScreen() {
       <Text style={styles.info}>
   🕒    Jam Operasional: 08.00 - 18.00 WIB
       </Text>
+
+      <TouchableOpacity style={styles.bookButton}>
+        <Text style={styles.bookButtonText}>
+           Pesan Tiket
+        </Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -136,6 +143,19 @@ info: {
 detailButton: {
   marginTop: 10,
   color: '#2563eb',
+  fontWeight: 'bold',
+},
+bookButton: {
+  backgroundColor: '#2563eb',
+  padding: 14,
+  borderRadius: 10,
+  marginTop: 20,
+  marginBottom: 20,
+},
+
+bookButtonText: {
+  color: '#ffffff',
+  textAlign: 'center',
   fontWeight: 'bold',
 },
 image: {

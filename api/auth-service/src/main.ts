@@ -33,3 +33,11 @@ async function bootstrap() {
       transform: true, // Otomatis mengubah string ke number/boolean jika DTO memintanya
     }),
   );
+
+  // Setup CORS agar terhubung HANYA dengan frontend Tripnesia
+  const frontendUrl = configService.get<string>('FRONTEND_URL');
+  app.enableCors({
+    origin: frontendUrl ? frontendUrl.split(',') : '*', // Bisa dipisah koma jika ada lebih dari 1 frontend
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true, // Penting jika kelak menggunakan cookie untuk refresh token
+  });

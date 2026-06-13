@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   View,
+  Image,
 } from 'react-native';
 
 import { Link } from 'expo-router';
@@ -24,6 +25,14 @@ export default function ExploreScreen() {
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>📸 Spot Foto Pantai</Text>
+
+        <Image
+          source={{
+            uri: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+            }}
+          style={styles.image}
+         />
+
         <Text style={styles.cardText}>
           Area favorit pengunjung untuk berfoto.
         </Text>
@@ -111,6 +120,13 @@ const styles = StyleSheet.create({
 
   cardText: {
     color: '#64748b',
+  },
+
+  image: {
+  width: '100%',
+  height: 180,
+  borderRadius: 10,
+  marginBottom: 10,
   },
 
   info: {

@@ -5,6 +5,10 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Masuk</Text>
 
+      <Text style={styles.subtitle}>
+        Selamat datang kembali di Tripnesia
+      </Text>
+
       <TextInput
         placeholder="Email"
         style={styles.input}
@@ -33,6 +37,11 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 24,
+  },
+  subtitle: {
+  fontSize: 14,
+  color: '#64748b',
+  marginBottom: 20,
   },
   input: {
     borderWidth: 1,

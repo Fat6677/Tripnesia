@@ -14,12 +14,12 @@ datasource db {
   provider = "postgresql"
 }
 
-// Enum disesuaikan dengan standar industri untuk Tripnesia
+
 enum Role {
-  USER          // Pengguna biasa / Traveler
-  PARTNER       // Pengganti MITRA (Bisa berupa Travel Agent, Pemilik Hotel, dll)
-  ADMIN         // Pengganti ADMIN_WILAYAH (Admin pengelola konten/operasional)
-  SUPER_ADMIN   // Akses tertinggi (Root)
+  USER          
+  PARTNER       
+  ADMIN         
+  Root   
 }
 
 model User {

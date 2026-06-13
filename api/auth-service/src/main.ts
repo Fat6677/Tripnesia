@@ -24,3 +24,12 @@ async function bootstrap() {
       port: tcpPort,
     },
   });
+
+  // Setup Global Validation Pipe yang lebih ketat
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true, // Membuang properti yang tidak ada di DTO
+      forbidNonWhitelisted: true, // Menolak request jika ada properti tak dikenal
+      transform: true, // Otomatis mengubah string ke number/boolean jika DTO memintanya
+    }),
+  );

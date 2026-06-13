@@ -27,9 +27,9 @@ export default function DetailScreen() {
         Galeri Wisata
       </Text>
 
-      <View style={styles.photoPlaceholder}>
-        <Text>Foto Pantai Setigi Heni</Text>
-      </View>
+      <Text>
+        📸 Galeri Pantai Setigi Heni
+      </Text>
     
       <Text style={styles.sectionTitle}>
         Informasi Pengunjung

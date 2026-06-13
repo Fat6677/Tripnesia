@@ -73,3 +73,24 @@ export class AuthService {
       email: user.email,
     };
   }
+
+  async verifyOtp(data: VerifyDto) {
+    const { email, otpCode } = data;
+
+    const user = await this.prisma.user.findUnique({ where: { email } });
+
+    if (!user) throw new BadRequestException('User tidak ditemukan');
+    if (user.isVerified) throw new BadRequestException('User sudah terverifikasi');
+    if (user.otpCode !== otpCode) throw new BadRequestException('Kode OTP salah');
+    if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
+      throw new BadRequestException('Kode OTP telah kedaluwarsa');
+    }
+
+    const verifiedUser = await this.prisma.user.update({
+      where: { email },
+      data: {
+        isVerified: true,
+        otpCode: null,
+        otpExpiresAt: null,
+      },
+    });

@@ -76,6 +76,17 @@ export default function ExploreScreen() {
           Menyediakan berbagai makanan dan minuman.
         </Text>
       </View>
+
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>
+          🎣 Spot Memancing
+        </Text>
+
+        <Text style={styles.cardText}>
+          Lokasi favorit pengunjung yang gemar memancing.
+        </Text>
+      </View>
+
     </ScrollView>
   );
 }

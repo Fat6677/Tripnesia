@@ -3,11 +3,47 @@
 
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+// Enum disesuaikan dengan standar industri untuk Tripnesia
+enum Role {
+  USER          // Pengguna biasa / Traveler
+  PARTNER       // Pengganti MITRA (Bisa berupa Travel Agent, Pemilik Hotel, dll)
+  ADMIN         // Pengganti ADMIN_WILAYAH (Admin pengelola konten/operasional)
+  SUPER_ADMIN   // Akses tertinggi (Root)
+}
+
+model User {
+  id           String    @id @default(uuid())
+  name         String
+  email        String    @unique
+  password     String
+  role         Role      @default(USER)
+  
+  // Opsional: Bisa digunakan nanti jika Tripnesia membagi area/region
+  regionId     String?
+
+  // Sistem Otentikasi & Verifikasi
+  isVerified   Boolean   @default(false)
+  otpCode      String?
+  otpExpiresAt DateTime?
+  
+  // Profil Dasar
+  phone        String?
+  avatarUrl    String?
+  
+  // Timestamps
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@map("users") 
 }

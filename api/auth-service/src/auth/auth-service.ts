@@ -60,3 +60,16 @@ export class AuthService {
         isVerified: false,
       },
     });
+
+    // Kirim event ke Microservice Email/Notifikasi Tripnesia
+    this.notificationClient.emit('send_otp_email', {
+      email: user.email,
+      otp: otp,
+      name: user.name,
+    });
+
+    return {
+      message: 'Registrasi berhasil. Silakan cek email untuk kode OTP.',
+      email: user.email,
+    };
+  }

@@ -40,6 +40,10 @@ export default function RegisterScreen() {
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Daftar</Text>
       </TouchableOpacity>
+
+      <Text style={styles.loginText}>
+        Sudah punya akun? Login
+      </Text>
     </View>
   );
 }
@@ -77,5 +81,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     fontWeight: 'bold',
+  },
+  loginText: {
+  textAlign: 'center',
+  marginTop: 20,
+  color: '#64748b',
   },
 });

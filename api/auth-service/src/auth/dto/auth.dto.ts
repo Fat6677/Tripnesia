@@ -63,3 +63,18 @@ export class VerifyResetOtpDto {
   @Length(6, 6, { message: 'OTP code must be exactly 6 characters' })
   otpCode!: string;
 }
+
+export class ResetPasswordDto {
+  @IsEmail({}, { message: 'Invalid email format' })
+  @IsNotEmpty({ message: 'Email is required' })
+  email!: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'Reset token is required' })
+  resetToken!: string;
+
+  @IsString()
+  @IsNotEmpty({ message: 'New password is required' })
+  @Length(6, 20, { message: 'New password must be between 6 and 20 characters' })
+  newPassword!: string;
+}

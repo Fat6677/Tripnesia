@@ -188,7 +188,7 @@ export class AuthService {
     });
 
     return {
-      message: 'OTP valid. Silakan lanjutkan untuk membuat password baru.',
+      message: 'OTP valid. Please continue to create a new password.',
       resetToken: resetToken,
     };
   }
@@ -198,10 +198,10 @@ export class AuthService {
     const user = await this.prisma.user.findUnique({ where: { email } });
 
     if (!user || user.otpCode !== resetToken) {
-      throw new BadRequestException('Sesi reset password tidak valid atau sudah kedaluwarsa');
+      throw new BadRequestException('Reset session password not valid. Please verify your OTP again.');
     }
     if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
-      throw new BadRequestException('Sesi reset password sudah kedaluwarsa');
+      throw new BadRequestException('Reset session password already expired.');
     }
 
     const hashedNewPassword = await bcrypt.hash(newPassword, 10);
@@ -215,7 +215,7 @@ export class AuthService {
       },
     });
 
-    return { message: 'Password berhasil diubah. Silakan login dengan password baru Anda.' };
+    return { message: 'Password changed successfully. Please login with your new password.' };
   }
 
   // ---- Microservices Methods ----

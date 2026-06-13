@@ -42,6 +42,13 @@ export default function DetailScreen() {
       <Text style={styles.sectionTitle}>
         Fasilitas Wisata
       </Text>
+
+      <View style={styles.photoPlaceholder}>
+      <Text>🚗 Area Parkir</Text>
+      <Text>🕌 Mushola</Text>
+      <Text>🚻 Toilet</Text>
+      <Text>📸 Spot Foto</Text>
+      </View>
     </View>
   );
 }

@@ -10,7 +10,7 @@ import {
   VerifyDto,
   VerifyResetOtpDto,
 } from './dto/auth.dto';
-import { JwtPayload } from './types/auth-payload'; 
+import { JwtPayload } from './types/auth-payload';
 
 @Controller('auth')
 export class AuthController {
@@ -76,3 +76,4 @@ export class AuthController {
   async handleAccountDeleted(@Payload() data: { accountId: string }) {
     await this.authService.deletedUser(data.accountId);
   }
+}

@@ -4,7 +4,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service'; // Sesuaikan path
+import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcryptjs';
@@ -31,9 +31,6 @@ export class AuthService {
     @Inject('USER_SERVICE') private userServiceClient: ClientProxy,
   ) {}
 
-  /**
-   * Helper: Generate 6-digit OTP
-   */
   private generateOtp(): string {
     return Math.floor(100000 + Math.random() * 900000).toString();
   }
@@ -43,12 +40,12 @@ export class AuthService {
 
     const existingUser = await this.prisma.user.findUnique({ where: { email } });
     if (existingUser) {
-      throw new BadRequestException('Email already registered in Tripnesia');
+      throw new BadRequestException('Email sudah terdaftar di Tripnesia');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const otp = this.generateOtp();
-    const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // OTP berlaku 15 Menit
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
 
     const user = await this.prisma.user.create({
       data: {
@@ -61,7 +58,6 @@ export class AuthService {
       },
     });
 
-    // Kirim event ke Microservice Email/Notifikasi Tripnesia
     this.notificationClient.emit('send_otp_email', {
       email: user.email,
       otp: otp,
@@ -69,7 +65,7 @@ export class AuthService {
     });
 
     return {
-      message: 'Registration successful. Please check your email for the OTP code.',
+      message: 'Registrasi berhasil. Silakan cek email untuk kode OTP.',
       email: user.email,
     };
   }
@@ -79,11 +75,11 @@ export class AuthService {
 
     const user = await this.prisma.user.findUnique({ where: { email } });
 
-    if (!user) throw new BadRequestException('User not found');
-    if (user.isVerified) throw new BadRequestException('User verified already');
-    if (user.otpCode !== otpCode) throw new BadRequestException('Wrong OTP Code');
+    if (!user) throw new BadRequestException('User tidak ditemukan');
+    if (user.isVerified) throw new BadRequestException('User sudah terverifikasi');
+    if (user.otpCode !== otpCode) throw new BadRequestException('Kode OTP salah');
     if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
-      throw new BadRequestException('OTP Code was expired. Please request a new one.');
+      throw new BadRequestException('Kode OTP telah kedaluwarsa');
     }
 
     const verifiedUser = await this.prisma.user.update({
@@ -95,7 +91,6 @@ export class AuthService {
       },
     });
 
-    // Sinkronisasi data user ke microservice lain jika diperlukan
     this.userServiceClient.emit('account_created', {
       accountId: verifiedUser.id,
       email: verifiedUser.email,
@@ -103,33 +98,32 @@ export class AuthService {
       role: verifiedUser.role,
     });
 
-    return { message: 'Verification successful. Please login.' };
+    return { message: 'Verifikasi OTP berhasil, silakan login.' };
   }
 
   async login(data: LoginDto) {
     const user = await this.prisma.user.findUnique({ where: { email: data.email } });
     
     if (!user || !(await bcrypt.compare(data.password, user.password))) {
-      throw new UnauthorizedException('Wrong Credential');
+      throw new UnauthorizedException('Kredensial salah');
     }
 
     if (!user.isVerified) {
-      throw new UnauthorizedException('Account not verified yet. Please verify your OTP first.');
+      throw new UnauthorizedException('Akun belum terverifikasi. Silakan verifikasi OTP terlebih dahulu.');
     }
 
     const payload: JwtPayload = {
       sub: user.id,
       email: user.email,
       role: user.role,
-      regionId: user.regionId,
+      regionId: user.regionId || undefined, // <-- Perbaikan ada di sini: mengubah null menjadi undefined
     };
 
-    // Generate Access & Refresh Token untuk Tripnesia
     const [accessToken, refreshToken] = await Promise.all([
-      this.jwtService.signAsync(payload), // Menggunakan secret dari module auth
+      this.jwtService.signAsync(payload),
       this.jwtService.signAsync(payload, {
         secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
-        expiresIn: '7d', // Refresh token berlaku 7 hari
+        expiresIn: '7d',
       }),
     ]);
 
@@ -148,7 +142,6 @@ export class AuthService {
     const { email } = data;
     const user = await this.prisma.user.findUnique({ where: { email } });
 
-    // Keamanan: Jangan beritahu apakah email terdaftar atau tidak (mencegah enumerasi email)
     if (!user) {
       return { message: 'Jika email terdaftar, kode OTP akan dikirimkan ke email tersebut.' };
     }
@@ -188,7 +181,7 @@ export class AuthService {
     });
 
     return {
-      message: 'OTP valid. Please continue to create a new password.',
+      message: 'OTP valid. Silakan lanjutkan untuk membuat password baru.',
       resetToken: resetToken,
     };
   }
@@ -198,10 +191,10 @@ export class AuthService {
     const user = await this.prisma.user.findUnique({ where: { email } });
 
     if (!user || user.otpCode !== resetToken) {
-      throw new BadRequestException('Reset session password not valid. Please verify your OTP again.');
+      throw new BadRequestException('Sesi reset password tidak valid atau sudah kedaluwarsa');
     }
     if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
-      throw new BadRequestException('Reset session password already expired.');
+      throw new BadRequestException('Sesi reset password sudah kedaluwarsa');
     }
 
     const hashedNewPassword = await bcrypt.hash(newPassword, 10);
@@ -215,10 +208,9 @@ export class AuthService {
       },
     });
 
-    return { message: 'Password changed successfully. Please login with your new password.' };
+    return { message: 'Password berhasil diubah. Silakan login dengan password baru Anda.' };
   }
 
-  // ---- Microservices Methods ----
   async findById(id: string) {
     return this.prisma.user.findUnique({
       where: { id },

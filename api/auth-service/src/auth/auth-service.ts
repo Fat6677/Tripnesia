@@ -43,7 +43,7 @@ export class AuthService {
 
     const existingUser = await this.prisma.user.findUnique({ where: { email } });
     if (existingUser) {
-      throw new BadRequestException('Email sudah terdaftar di Tripnesia');
+      throw new BadRequestException('Email already registered in Tripnesia');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -69,7 +69,7 @@ export class AuthService {
     });
 
     return {
-      message: 'Registrasi berhasil. Silakan cek email untuk kode OTP.',
+      message: 'Registration successful. Please check your email for the OTP code.',
       email: user.email,
     };
   }
@@ -79,11 +79,11 @@ export class AuthService {
 
     const user = await this.prisma.user.findUnique({ where: { email } });
 
-    if (!user) throw new BadRequestException('User tidak ditemukan');
-    if (user.isVerified) throw new BadRequestException('User sudah terverifikasi');
-    if (user.otpCode !== otpCode) throw new BadRequestException('Kode OTP salah');
+    if (!user) throw new BadRequestException('User not found');
+    if (user.isVerified) throw new BadRequestException('User verified already');
+    if (user.otpCode !== otpCode) throw new BadRequestException('Wrong OTP Code');
     if (user.otpExpiresAt && user.otpExpiresAt < new Date()) {
-      throw new BadRequestException('Kode OTP telah kedaluwarsa');
+      throw new BadRequestException('OTP Code was expired. Please request a new one.');
     }
 
     const verifiedUser = await this.prisma.user.update({
@@ -103,5 +103,23 @@ export class AuthService {
       role: verifiedUser.role,
     });
 
-    return { message: 'Verifikasi OTP berhasil, silakan login.' };
+    return { message: 'Verification successful. Please login.' };
   }
+
+  async login(data: LoginDto) {
+    const user = await this.prisma.user.findUnique({ where: { email: data.email } });
+    
+    if (!user || !(await bcrypt.compare(data.password, user.password))) {
+      throw new UnauthorizedException('Wrong Credential');
+    }
+
+    if (!user.isVerified) {
+      throw new UnauthorizedException('Account not verified yet. Please verify your OTP first.');
+    }
+
+    const payload: JwtPayload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+      regionId: user.regionId,
+    };
